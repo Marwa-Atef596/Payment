@@ -1,11 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:payment/features/checkout/data/repos/Checkout_Repo_impl.dart';
+import 'package:payment/features/checkout/presentaion/manager/features/payment/presentation/cubit/payment_cubit.dart';
 import 'package:payment/features/checkout/presentaion/views/widget/order_info_item.dart';
-import 'package:payment/features/checkout/presentaion/views/widget/payment_methods.dart';
 import 'package:payment/features/checkout/presentaion/views/widget/total_price.dart';
 
 import '../../../../../core/widget/custom_button.dart';
+import 'PaymentMethodBottomSheet.dart';
 
 class MyCartviewBody extends StatelessWidget {
   const MyCartviewBody({super.key});
@@ -56,37 +59,16 @@ class MyCartviewBody extends StatelessWidget {
                   ),
                   context: context,
                   builder: (context) {
-                    return PaymentMethodBottomSheet();
+                    return BlocProvider(
+                      create: (context) => PaymentCubit(CheckoutRepoImpl()),
+                      child: PaymentMethodBottomSheet(),
+                    );
                   });
             },
           ),
           SizedBox(
             height: 12,
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class PaymentMethodBottomSheet extends StatelessWidget {
-  const PaymentMethodBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            height: 16,
-          ),
-          PaymentMethodsListView(),
-          SizedBox(
-            height: 32,
-          ),
-          CustomButton(txt: 'Continue')
         ],
       ),
     );

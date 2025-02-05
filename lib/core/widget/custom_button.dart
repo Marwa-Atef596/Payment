@@ -6,9 +6,10 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.txt,
-    this.onPressed,
+    this.onPressed,  this.isLoading=false,
   });
   final String txt;
+  final bool isLoading;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Text(
+          child:isLoading?CircularProgressIndicator(): Text(
             txt,
             style: Styles.style22,
             textAlign: TextAlign.center,
