@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:dartz/dartz.dart';
 import 'package:payment/core/errors/failure.dart';
 import 'package:payment/core/utils/stripe_service.dart';
