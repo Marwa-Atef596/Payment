@@ -1,13 +1,11 @@
-// ignore_for_file: unused_import
+import 'item.dart';
 
-import 'item.list.model.dart';
-
-class Item {
+class ItemListModel {
 	List<Item>? items;
 
-	Item({this.items});
+	ItemListModel({this.items});
 
-	factory Item.fromJson(Map<String, dynamic> json) => Item(
+	factory ItemListModel.fromJson(Map<String, dynamic> json) => ItemListModel(
 				items: (json['items'] as List<dynamic>?)
 						?.map((e) => Item.fromJson(e as Map<String, dynamic>))
 						.toList(),
