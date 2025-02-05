@@ -4,7 +4,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:payment/features/checkout/data/models/payment_intent_input_model.dart';
+import 'package:payment/features/checkout/data/models/payment_intent_input_model/payment_intent_input_model.dart';
 import 'package:payment/features/checkout/data/repos/checkout_repo.dart';
 
 part 'payment_state.dart';
