@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:payment/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:payment/features/checkout/presentaion/manager/features/payment/presentation/cubit/payment_cubit.dart';
 import 'package:payment/features/checkout/presentaion/views/widget/thank_you_view.dart';
 
@@ -21,13 +22,21 @@ class CustomButtonBlocConsumer extends StatelessWidget {
           }));
         }
         if (state is PaymentFailure) {
+          Navigator.pop(context);
           SnackBar snackBar = SnackBar(content: Text(state.errMessage));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
       builder: (context, state) {
         return CustomButton(
-            isLoading: state is PaymentLoading ? true : false, txt: 'Continue');
+            onPressed: () {
+              PaymentIntentInputModel paymentIntentInputModel =
+                  PaymentIntentInputModel(amount: '100', currency: 'usd');
+              BlocProvider.of<PaymentCubit>(context).makePayment(
+                  paymentIntentInputModel: paymentIntentInputModel);
+            },
+            isLoading: state is PaymentLoading ? true : false,
+            txt: 'Continue');
       },
     );
   }
